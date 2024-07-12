@@ -1,3 +1,2 @@
 # DACRUST
-Fast Food Restaurant Website
-Levan
+Fast Food Restaurant Website copied by Levan
