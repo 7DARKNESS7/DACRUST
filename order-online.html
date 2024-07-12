@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DA CRUST - Order Online</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.png">
+</head>
+<body>
+    <nav>
+        <div class="logo"><h3>DA CRUST <i class="fa-solid fa-star"></i></h3></div>
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./menu.html">Menu</a></li>
+            <li><a href="./order-online.html">Order Online</a></li>
+            <li><a href="./index.html#contact">Contact</a></li>
+            <li><a href="#" onclick="openLoginModal()"><i class="fa fa-user-circle"></i> Log In</a></li>
+            <li><a href="#" onclick="openMenu()"><i class="fa fa-basket-shopping"></i> 0</a></li>
+        </ul>
+        <div class="mob-menu">
+            <a href="#" onclick="openMenu()"><i class="fa fa-basket-shopping"></i> 0</a>
+        </div>
+    </nav>
+    <div class="burgercont">
+        <div class="burger" id="burger">
+          <div class="line line1"></div>
+          <div class="line line2"></div>
+          <div class="line line3"></div>
+        </div>
+      </div>
+    <div class="burger">
+        <ul class="burger-menu" id="burger-menu">
+            <li><a href="#" onclick="openLoginModal()"><i class="fa fa-user-circle"></i> Log In</a></li>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./menu.html">Menu</a></li>
+            <li><a href="./order-online.html" class="active">Order Online</a></li>
+            <li><a href="./index.html#contact">Contact</a></li>
+          </ul>
+    </div>
+    <main>
+        <div id="overlay" class="overlay2" onclick="closeMenu()"></div>
+        <div id="slideMenu" class="slide-menu">
+            <div class="menu-header">
+                <span class="close" onclick="closeMenu()"><i class="fa-solid fa-chevron-right"></i></span>
+                <h2>Cart</h2>
+            </div>
+            <div class="menu-content">
+                <p>Cart is empty</p>
+            </div>
+        </div>
+
+        <div class="modal" id="modal3">
+            <div class="modal-header">
+                <h2 id="modal-title">Log In</h2>
+                <span class="close" onclick="closeModal('modal3')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="login-form" class="form">
+                    <label for="login-email">Email:</label>
+                    <input type="email" id="login-email" name="login-email" required>
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="login-password" required>
+                    <button type="submit" class="submit-button">Log In</button>
+                </form>
+                <form id="registration-form" class="form" style="display:none;">
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" name="register-email" required>
+                    <label for="register-password">Password:</label>
+                    <input type="password" id="register-password" name="register-password" required>
+                    <label for="register-confirm-password">Confirm Password:</label>
+                    <input type="password" id="register-confirm-password" name="register-confirm-password" required>
+                    <button type="submit" class="submit-button">Register</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p id="switcher-text-login">Don't have an account? <a href="#" id="switch-to-register">Sign Up</a></p>
+                <p id="switcher-text-register" style="display:none;">Already have an account? <a href="#" id="switch-to-login">Log In</a></p>
+            </div>
+        </div>
+        <section class="order-head">
+            <h1>ORDRER ONLINE</h1>
+            <div class="orders">
+                <div class="circle"></div>
+                <span>Accepting Orders</span>
+            </div>
+            <div class="order-type">
+                <div class="pickup">
+                    <button onclick="openPickupModal()">Pickup</button>
+                </div>
+                <div class="delivery">
+                    <button onclick="openDeliveryModal()">Delivery</button>
+                </div>
+            </div>
+            <div class="time-address">
+                <div class="time">
+                    <i class="fa-solid fa-clock"></i>
+                    <p>Pickup time: in 30 minutes <a href="#"  onclick="openPickupModal()">Change</a></p>  
+                </div>
+                <div class="time">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Pickup Address: San Francisco, CA, USA</p>  
+
+                </div>
+            </div>
+
+
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <h2>How would you like to receive your order?</h2>
+            <span class="close" onclick="closeModal('modal')">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="order-type-modal">
+                <div class="pickup">
+                    <button id="pickupButton" class="button-active" onclick="showContent('pickupContent')">Pickup</button>
+                </div>
+                <div class="delivery">
+                    <button id="deliveryButton" class="button-inactive" onclick="showContent('deliveryContent')">Delivery</button>
+                </div>
+            </div>            
+            <div id="pickupContent" class="content-section">
+                <div class="info">
+                    <div class="pick-from">
+                        <p>Pickup from:</p>
+                        <span>San Francisco, CA, USA</span>
+                    </div>
+                    <form>
+                        <p>When:</p>
+                        <div>
+                            <input type="radio" id="radio" value="1" name="group1" checked>
+                            <label for="radio">in 30 minutes</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="radio2" value="2" name="group1">
+                            <label for="radio2">Schedule for later</label>
+                            <div id="scheduleOptions" style="display: none;">
+                                <div>
+                                    <label for="scheduleDate">Date</label>
+                                    <select id="scheduleDate" name="scheduleDate">
+                                        <option value="Today">Today</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="scheduleTime">Time</label>
+                                    <select id="scheduleTime" name="scheduleTime">
+                                        <option value="02:15">2:15 AM</option>
+                                        <option value="02:30">2:30 AM</option>
+                                        <option value="02:45">2:45 AM</option>
+                                        <option value="03:00">3:00 AM</option>
+                                        <option value="03:15">3:15 AM</option>
+                                        <option value="03:30">3:30 AM</option>
+                                        <option value="03:45">3:45 AM</option>
+                                        <option value="04:00">4:00 AM</option>
+                                        <option value="04:15">4:15 AM</option>
+                                        <option value="04:30">4:30 AM</option>
+                                        <option value="04:45">4:45 AM</option>
+                                        <option value="05:00">5:00 AM</option>
+                                        <option value="05:15">5:15 AM</option>
+                                        <option value="05:30">5:30 AM</option>
+                                        <option value="05:45">5:45 AM</option>
+                                        <option value="06:00">6:00 AM</option>
+                                        <option value="06:15">6:15 AM</option>
+                                        <option value="06:30">6:30 AM</option>
+                                        <option value="06:45">6:45 AM</option>
+                                        <option value="07:00">7:00 AM</option>
+                                        <option value="07:15">7:15 AM</option>
+                                        <option value="07:30">7:30 AM</option>
+                                        <option value="07:45">7:45 AM</option>
+                                        <option value="08:00">8:00 AM</option>
+                                        <option value="08:15">8:15 AM</option>
+                                        <option value="08:30">8:30 AM</option>
+                                        <option value="08:45">8:45 AM</option>
+                                        <option value="09:00">9:00 AM</option>
+                                        <option value="09:15">9:15 AM</option>
+                                        <option value="09:30">9:30 AM</option>
+                                        <option value="09:45">9:45 AM</option>
+                                        <option value="10:00">10:00 AM</option>
+                                        <option value="10:15">10:15 AM</option>
+                                        <option value="10:30">10:30 AM</option>
+                                        <option value="10:45">10:45 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                        <option value="11:15">11:15 AM</option>
+                                        <option value="11:30">11:30 AM</option>
+                                        <option value="11:45">11:45 AM</option>
+                                        <option value="12:00">12:00 PM</option>
+                                        <option value="12:15">12:15 PM</option>
+                                        <option value="12:30">12:30 PM</option>
+                                        <option value="12:45">12:45 PM</option>
+                                        <option value="13:00">1:00 PM</option>
+                                        <option value="13:15">1:15 PM</option>
+                                        <option value="13:30">1:30 PM</option>
+                                        <option value="13:45">1:45 PM</option>
+                                        <option value="14:00">2:00 PM</option>
+                                        <option value="14:15">2:15 PM</option>
+                                        <option value="14:30">2:30 PM</option>
+                                        <option value="14:45">2:45 PM</option>
+                                        <option value="15:00">3:00 PM</option>
+                                        <option value="15:15">3:15 PM</option>
+                                        <option value="15:30">3:30 PM</option>
+                                        <option value="15:45">3:45 PM</option>
+                                        <option value="16:00">4:00 PM</option>
+                                        <option value="16:15">4:15 PM</option>
+                                        <option value="16:30">4:30 PM</option>
+                                        <option value="16:45">4:45 PM</option>
+                                        <option value="17:00">5:00 PM</option>
+                                        <option value="17:15">5:15 PM</option>
+                                        <option value="17:30">5:30 PM</option>
+                                        <option value="17:45">5:45 PM</option>
+                                        <option value="18:00">6:00 PM</option>
+                                        <option value="18:15">6:15 PM</option>
+                                        <option value="18:30">6:30 PM</option>
+                                        <option value="18:45">6:45 PM</option>
+                                        <option value="19:00">7:00 PM</option>
+                                        <option value="19:15">7:15 PM</option>
+                                        <option value="19:30">7:30 PM</option>
+                                        <option value="19:45">7:45 PM</option>
+                                        <option value="20:00">8:00 PM</option>
+                                        <option value="20:15">8:15 PM</option>
+                                        <option value="20:30">8:30 PM</option>
+                                        <option value="20:45">8:45 PM</option>
+                                        <option value="21:00">9:00 PM</option>
+                                        <option value="21:15">9:15 PM</option>
+                                        <option value="21:30">9:30 PM</option>
+                                        <option value="21:45">9:45 PM</option>
+                                        <option value="22:00">10:00 PM</option>
+                                        <option value="22:15">10:15 PM</option>
+                                        <option value="22:30">10:30 PM</option>
+                                        <option value="22:45">10:45 PM</option>
+                                        <option value="23:00">11:00 PM</option>
+                                        <option value="23:15">11:15 PM</option>
+                                        <option value="23:30">11:30 PM</option>
+                                        <option value="23:45">11:45 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="deliveryContent" class="content-section" style="display:none;">
+                    <div class="delivery-address">
+                        <p>Deliver to:</p>
+                        <input type="text" placeholder="e.g., 131a Orchard St, New York, NY 10002">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <a href="./order-online.html"><button type="submit">Save</button></a>
+        </div>
+    </div>
+    <div class="modal" id="modal2">
+        <div class="modal-header">
+            <h2>Dish Name</h2>
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+        </div>
+        <div class="modal-body">
+                <p style="font-size: 14px; line-height:30px;">I’m a dish description. Click “Edit Menu” to open the Restaurant Menu editor and change my text.</p>
+                <form>
+                    <p style="margin-top: 20px; font-size: 14px;">Special Request</p>
+                    <textarea name="text" id="textareaa" placeholder="We'll do our best to accommodate any requests when possible"></textarea>
+                </form>
+                <p style="margin-top: 20px; font-size: 14px;">Quantity</p>
+                <div class="quantity">
+                    <button class="quantity-btn" onclick="decreaseQuantity()"><i class="fa-solid fa-minus"></i></button>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1">
+                    <button class="quantity-btn" onclick="increaseQuantity()"><i class="fa-solid fa-plus"></i></button>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <a href="./order-online.html" style="margin: 0 auto; width: 100%;"><button type="submit" class="modalMenuBtn" style="width: 100%;">Add to cart</button></a>
+        </div>
+    </div>
+        </section>
+        <section class="online-menu">
+            <div class="chooser-wrapper">
+                <div class="arrow left">&#10094;</div>
+                <div class="chooser">
+                  <a href="#chicken">CHICKEN SANDWICH</a>
+                  <a href="#tenders">TENDERS</a>
+                  <a href="#wings">WINGS</a>
+                  <a href="#offers">SPECIAL OFFERS</a>
+                  <a href="#sides">SIDES</a>
+                  <a href="#desserts">DESSERTS</a>
+                </div>
+                <div class="arrow right">&#10095;</div>
+              </div>
+            
+            <h1>MENU</h1>
+            <div id="chicken" class="content">
+                <div class="menu-box">
+                    <h2>CHICKEN SANDWICH</h2>
+                    <div class="container">
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Classic Chicken Sandwich</h2>
+                                <p>I’m a dish description. Click “Edit Menu” to open the Restaurant Menu editor and change my text.</p>
+                            </div>
+                            <span>$9.00</span>
+                        </div>
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Mega Chicken Sandwich</h2>
+                                <p>I’m a dish description. Click “Edit Menu” to open the Restaurant Menu editor and change my text.</p>
+                            </div>
+                            <span>$12.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tenders" class="content">
+                <div class="menu-box">
+                    <h2>TENDERS</h2>
+                    <div class="container">
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Chicken Tenders - 6pcs</h2>
+                                <p>I’m a dish description. Click “Edit Menu” to open the Restaurant Menu editor and change my text.</p>
+                            </div>
+                            <span>$9.00</span>
+                        </div>
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Chicken Tenders - 9pcs</h2>
+                                <p>I’m a dish description. Click “Edit Menu” to open the Restaurant Menu editor and change my text.</p>
+                            </div>
+                            <span>$12.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="wings" class="content">
+                <div class="menu-box">
+                    <h2>WINGS</h2>
+                    <div class="container">
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Hot & Spicy Wings - 6pcs</h2>
+                                <p>I’m a dish description. Click “Edit Menu” to open the Restaurant Menu editor and change my text.</p>
+                            </div>
+                            <span>$9.00</span>
+                        </div>
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Hot & Spicy Wings - 9pcs</h2>
+                                <p>I’m a dish description. Click “Edit Menu” to open the Restaurant Menu editor and change my text.</p>
+                            </div>
+                            <span>$12.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="offers" class="content">
+                <div class="menu-box">
+                    <h2>SPECIAL OFFERS</h2>
+                    <div class="container">
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Da Crust Combo</h2>
+                                <p>I’m a dish description. Click “Edit Menu” to open the Restaurant Menu editor and change my text.</p>
+                            </div>
+                            <span>$19.99</span>
+                        </div>
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Family Meal</h2>
+                                <p>I’m a dish description. Click “Edit Menu” to open the Restaurant Menu editor and change my text.</p>
+                            </div>
+                            <span>$19.99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sides" class="content">
+                <div class="menu-box">
+                    <h2>SIDES</h2>
+                    <div class="container">
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>French Fries</h2>
+                            </div>
+                            <span>$4.00</span>
+                        </div>
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Mac & Cheese</h2>
+                            </div>
+                            <span>$4.00</span>
+                        </div>
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Coleslaw</h2>
+                            </div>
+                            <span>$4.00</span>
+                        </div>
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Mix Greens</h2>
+                            </div>
+                            <span>$4.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="desserts" class="content">
+                <div class="menu-box">
+                    <h2>DESSERTS</h2>
+                    <div class="container">
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>★ Bubble Waffle</h2>
+                            </div>
+                            <span>$4.00</span>
+                        </div>
+                        <div class="box" onclick="openMenuModal()">
+                            <div class="text">
+                                <h2>Milkshake</h2>
+                            </div>
+                            <span>$4.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="contact">
+                <h1>CONTACT US</h1>
+                <h2>DROP US A LINE AND WE'LL GET BACK TO YOU</h2>
+                <form>
+                    <div class="name">
+                        <div>
+                            <label for="First">First Name</label>
+                            <input type="text" id="First" required>
+                        </div>
+                        <div>
+                            <label for="Last">Last Name</label>
+                            <input type="text" id="Last" required>
+                        </div>
+                    </div>
+                    <div class="email">
+                        <div>
+                            <label for="Email">Email *</label>
+                            <input type="email" id="Email" required>
+                        </div>
+                        <div>
+                            <label for="Subject">Subject</label>
+                            <input type="text" id="Subject" required>
+                        </div>
+                    </div>
+                    <div class="message">
+                        <div>
+                            <label for="Message">Leave us a message...</label>
+                            <textarea name="Message" id="Message" cols="30" rows="10" required></textarea>
+                        </div>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="address">
+                <div class="texts">
+                    <h1>WE'RE OPEN</h1>
+                    <p>Monday-Friday: 11am-10pm <br> Saturday-Sunday: 11am-12am</p>
+                    <p>500 Terry Francois Street, <br> San Francisco, CA 94158</p>
+                    <p>Tel: 123-456-7890 <br> Email: info@mysite.com</p>
+                    <div class="icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2035 by Da Crust. Powered and secured by <a href="#">Wix</a></p>
+        </div>
+    </footer>
+
+<script src="./js/script.js"></script>
+<script>
+    //Burger Menu Function
+    const burger = document.getElementById('burger');
+    const burgerMenus = document.querySelectorAll('.burger-menu');
+
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('toggle');
+        burgerMenus.forEach(burgerMenus => {
+            if (burgerMenus.style.display === 'flex') {
+                burgerMenus.style.display = 'none';
+            } else {
+                burgerMenus.style.display = 'flex';
+            }
+        });
+    });
+</script>
+</body>
+</html>
