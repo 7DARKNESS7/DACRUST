@@ -26,10 +26,13 @@ nav {
   top: 0;
   z-index: 10;
 }
-nav .logo {
+nav a.logo-link {
+  text-decoration: none;
+}
+nav a.logo-link .logo {
   color: #DD2803;
 }
-nav .logo i {
+nav a.logo-link .logo i {
   color: #000000;
   position: absolute;
   font-size: 14px;
@@ -210,6 +213,15 @@ nav .mob-menu a i {
 }
 main {
   width: 100%;
+  animation: pageLoad 1s;
+}
+@keyframes pageLoad {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 main .modal-backdrop {
   display: none;
