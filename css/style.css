@@ -830,7 +830,7 @@ main section.menu-head h1 {
 main section.menu-center {
   width: 100%;
   background-color: #F9F2EA;
-  padding: 120px 440px;
+  padding: 120px 50px;
   display: flex;
   flex-direction: column;
   gap: 80px;
@@ -840,6 +840,7 @@ main section.menu-center .menu {
   display: flex;
   justify-content: center;
   gap: 50px;
+  flex-wrap: wrap;
 }
 main section.menu-center .menu .menu-item {
   display: flex;
