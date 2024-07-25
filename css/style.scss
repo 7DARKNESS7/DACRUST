@@ -1641,7 +1641,8 @@ main {
                         .box {
                             max-width: 485px;
                             width: 100%;
-                            height: 200px;
+                            height: 100%;
+                            gap: 20px;
                             .text {
                                 h2 {
                                     margin: 0;
